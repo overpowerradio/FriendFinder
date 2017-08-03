@@ -1,0 +1,1 @@
+console.log("This is the correct path to the PUBLIC folder!");
