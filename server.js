@@ -31,7 +31,7 @@ var friendsFound = {
 	photo: "https://scontent.ftpa1-2.fna.fbcdn.net/v/t1.0-1/p480x480/17904456_10154488157505686_6242993846905690849_n.jpg?oh=0f9ba24b612206bf3e416f94c53e1aeb&oe=59EC9AA6",
 	scores: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
 
-}
+};
 //=======  LISTENER  ==================
 
 app.listen(PORT, function() {

@@ -1,5 +1,12 @@
 console.log("htmlRoutes.js is linked!");
 var filePathTest = require('../public/pathTest.js');
+
+// !!!!!!!!!!!! ERROR !!!!!!!!!!!!!!!!
+
+//my file paths to my html documents are correct, but they are not publishing from the server
+
+
+
 var express = require('express');
 //calls the express npm that handles robust http routing.
 var bodyParser = require("body-parser");
