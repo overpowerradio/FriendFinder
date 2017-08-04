@@ -1,29 +1,79 @@
-console.log("friends.js is linked!");
-
-var friends = [{
-
+var friends = [
+{
 	name: "William Carroll",
 	photo: "https://scontent.ftpa1-2.fna.fbcdn.net/v/t1.0-1/p480x480/17904456_10154488157505686_6242993846905690849_n.jpg?oh=0f9ba24b612206bf3e416f94c53e1aeb&oe=59EC9AA6",
-	scores: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+	scores: [
+	"5", 
+	"5", 
+	"5", 
+	"5", 
+	"5", 
+	"5", 
+	"5", 
+	"5", 
+	"5", 
+	"5"]
+},
+{
+	name: "Lauryn Hill",
+	photo: "https://scontent.ftpa1-2.fna.fbcdn.net/v/t1.0-1/p480x480/17904456_10154488157505686_6242993846905690849_n.jpg?oh=0f9ba24b612206bf3e416f94c53e1aeb&oe=59EC9AA6",
+	scores: [
+	"4", 
+	"2", 
+	"4", 
+	"4", 
+	"5", 
+	"4", 
+	"5", 
+	"3", 
+	"2", 
+	"2"]
+},
+{
+	name: "Beyonce Carter",
+	photo: "https://scontent.ftpa1-2.fna.fbcdn.net/v/t1.0-1/p480x480/17904456_10154488157505686_6242993846905690849_n.jpg?oh=0f9ba24b612206bf3e416f94c53e1aeb&oe=59EC9AA6",
+	scores: [
+	"3", 
+	"4", 
+	"2", 
+	"2", 
+	"4", 
+	"5", 
+	"5", 
+	"3", 
+	"3", 
+	"3"]
+},
+{
+	name: "Andre Benjamin",
+	photo: "https://scontent.ftpa1-2.fna.fbcdn.net/v/t1.0-1/p480x480/17904456_10154488157505686_6242993846905690849_n.jpg?oh=0f9ba24b612206bf3e416f94c53e1aeb&oe=59EC9AA6",
+	scores: [
+	"5", 
+	"4", 
+	"3", 
+	"2", 
+	"1", 
+	"5", 
+	"4", 
+	"3", 
+	"2", 
+	"4"]
+},
+{
+	name: "Kamal Fareed",
+	photo: "https://scontent.ftpa1-2.fna.fbcdn.net/v/t1.0-1/p480x480/17904456_10154488157505686_6242993846905690849_n.jpg?oh=0f9ba24b612206bf3e416f94c53e1aeb&oe=59EC9AA6",
+	scores: [
+	"5", 
+	"5", 
+	"3", 
+	"1", 
+	"2", 
+	"1", 
+	"5", 
+	"5", 
+	"4", 
+	"4"]
+}
+]
 
-}];
-
- $("#submit").on("click", function(event) {
-      event.preventDefault();
-      var newFriend = {
-        name: $("#name").val().trim(),
-        photo: $("#photo").val().trim(),
-        scores: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]
-        };
-
-      // creates a friend object
-
-      $.post("http://localhost:8080/api/new", friends)
-  //this posts the new friend to the "friends" object array.
-      .done(function(data) {
-
-        console.log(data);
-
-       
-
-      });
+module.exports = friends; //this is another way of exporting variables/objects from a Javascript file. Now, the file that REQUIRES this file can access the variable globally within it's code. Example: in the apiRoutes.js we have code to "res.json(friends)" that's picking up this variable from that file.

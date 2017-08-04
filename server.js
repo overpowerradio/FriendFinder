@@ -1,39 +1,30 @@
-var express = require('express');
-//calls the express npm that handles robust http routing.
-var bodyParser = require("body-parser");
-//call the body-parser npm
+//start your server
 
-var app = express();
-//is shorthand to access the express app
+var express = require('express'); //express npm package is used for dynamic http routing
+var app = express(); //the "app" var is just a shorthand way to access the FUNCTION
 
-var path = require('path');
-// is a built-in npm package that allows us to deliver html pages to user with "express" and routing.
+var bodyParser = require('body-parser'); // is a built-in npm package that allows us to deliver html pages to the user with EXPRESS routing
 
-var PORT = process.env.PORT || 8080;
-//I could use any # as a port for my server to connect to that I choose. 
-//The number selected number can be any number starting at 80 + (to an undefined astronomical number). Here I set it to 3000.
-// app.listen(3000) is another way to write this - based on npm info explained on github.
+var PORT = process.env.PORT || 3330; // "process.env.PORT" is a default for 3rd party hosting that will allow them to assign your server to a port after you upload it. // "|| 3330" ...and indicating a local port that can be whatever number we assign, but in this case it's "3330".
 
-var routeHTML = require('./app/routing/htmlRoutes.js');
-var routeAPI = require('./app/routing/apiRoutes.js');
-var appFriends = require('./app/data/friends.js');
-// links to the relative .js files
+var jsonParser = bodyParser.json();
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false }); // creates application/x-www-form-urlencoded parser //we need to know what the difference is between true/false here. On the npm page it's "false", but in our class activities it is assigned to "true".
+
+app.use(bodyParser.json({ type: 'application/*+json' })); //parse various different custom JSON types as JSON
+
+app.use(bodyParser.raw({ type: 'application/vnd.custom-type' })); //parse some custom thing into a buffer
+
+app.use(bodyParser.text({ type: 'text/html'})); // parse an HTML body into a string
+
+// what is the difference between "/vnd.custom-type" and " /vnd.api+json" [ex: app.use(bodyParser.json({ type: "application/vnd.api+json" })) ] - - we were directed to use this way in the Star Wars App exercise.
+
+require('./app/routing/htmlRoutes.js')(app); //"(app) passes the express module into the "htmlRoutes.js" file w/o having to create the variables to call the express module inside the "htmlRoutes.js" file itself.
+
+require('./app/routing/apiRoutes.js')(app); //Here, we're doing the same for apiRoutes.js.
 
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-// -copied from the body-parser npm page- this code allows us to collect are the requests from our user and responses from our server in a format that is easy to amend.
 
-var friendsFound = {
-	name: "William Carroll",
-	photo: "https://scontent.ftpa1-2.fna.fbcdn.net/v/t1.0-1/p480x480/17904456_10154488157505686_6242993846905690849_n.jpg?oh=0f9ba24b612206bf3e416f94c53e1aeb&oe=59EC9AA6",
-	scores: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
-
-};
-//=======  LISTENER  ==================
-
-app.listen(PORT, function() {
-console.log("App listening on PORT " + PORT);
+app.listen(PORT, function(req, res){
+	console.log("Your server is running on port " + PORT);
 });
